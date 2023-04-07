@@ -1,19 +1,14 @@
 import { atom, selector } from 'recoil';
 
-export const minState = atom({
-  key: 'mins',
-  default: 0,
-});
+interface IToDoState {
+  [key: string]: string[];
+}
 
-export const hourSelctor = selector<number>({
-  key: 'hours',
-  get: ({ get }) => {
-    const min = get(minState);
-    return min / 60;
-  },
-  set: ({ set }, newValue) => {
-    console.log(newValue);
-    const min = Number(newValue) * 60;
-    set(minState, min);
+export const toDoState = atom<IToDoState>({
+  key: 'toDo',
+  default: {
+    'To Do': ['1', '2', '3', '4', '5'],
+    Doing: ['a', 'b', 'c', 'd', 'e'],
+    Done: ['A', 'B', 'C', 'D', 'E'],
   },
 });

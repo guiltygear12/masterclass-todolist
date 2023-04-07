@@ -34,8 +34,8 @@ footer, header, hgroup, main, menu, nav, section {
 display: block;
 }
 /* HTML5 hidden-attribute fix for newer browsers */
-*[hidden] {
-display: none;
+*[hidden] { 
+ display: none;
 }
 *{
 box-sizing: border-box;
@@ -43,8 +43,8 @@ box-sizing: border-box;
 body {
 font-family: 'Source Sans Pro', sans-serif;
 line-height: 1;
-background-color: ${(props)=>props.theme.bgColor};
-color: ${(props)=>props.theme.textColor};
+background-color: ${(props) => props.theme.bgColor};
+color: ${(props) => props.theme.textColor};
 }
 menu, ol, ul {
 list-style: none;
@@ -67,16 +67,13 @@ color: inherit;
 }
 `;
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
 root.render(
-    <RecoilRoot>
-      <ThemeProvider theme={darkTheme}>
-        <GlobalStyle />
-        <App />
-      </ThemeProvider>
-    </RecoilRoot>
+  <RecoilRoot>
+    <ThemeProvider theme={darkTheme}>
+      <GlobalStyle />
+      <App />
+    </ThemeProvider>
+  </RecoilRoot>
 );
-
