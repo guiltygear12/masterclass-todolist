@@ -29,16 +29,12 @@ function App() {
     const { destination, draggableId, source } = info;
     if (!destination) return;
     if (destination?.droppableId === source.droppableId) {
-      // 같은 보드 이동
-      // 1. 새로운 배열에 복사
       setToDos((allBoards) => {
         console.log('같은디용?');
-        // 모든 보드를 불러온뒤 출발지점의 보드만 남긴다
         const boardCopy = [...allBoards[source.droppableId]];
-        // 1. 움직인 아이템을 기존 배열에서 삭제한다
+        const taskObj = boardCopy[source.index];
         boardCopy.splice(source.index, 1);
-        // 2. 삭제된 아이템을 새로운 배열에 추가한다
-        boardCopy.splice(destination.index, 0, draggableId);
+        boardCopy.splice(destination.index, 0, taskObj);
         return {
           ...allBoards,
           [source.droppableId]: boardCopy,
@@ -50,8 +46,9 @@ function App() {
       setToDos((allBoards) => {
         const FromBoardCopy = [...allBoards[source.droppableId]];
         const ToBoardCopy = [...allBoards[destination.droppableId]];
+        const taskObj = FromBoardCopy[source.index];
         FromBoardCopy.splice(source.index, 1);
-        ToBoardCopy.splice(destination.index, 0, draggableId);
+        ToBoardCopy.splice(destination.index, 0, taskObj);
         return {
           ...allBoards,
           [source.droppableId]: FromBoardCopy,
